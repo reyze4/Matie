@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ec5a8dedf774be2b79c482b2942216e" Name="Diagram1">
+        <EntityTypeShape EntityType="asdModel.Administrator" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="asdModel.Feed" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="asdModel.Role" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="asdModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="asdModel.User" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="asdModel.Order" Width="1.5" PointX="8.25" PointY="4.625" />
+        <AssociationConnector Association="asdModel.FK_Administrator_Feed" />
+        <AssociationConnector Association="asdModel.FK_Administrator_Role" />
+        <AssociationConnector Association="asdModel.FK_Order_Feed" />
+        <AssociationConnector Association="asdModel.FK_User_Feed" />
+        <AssociationConnector Association="asdModel.FK_User_Feed1" />
+        <AssociationConnector Association="asdModel.FK_Order_Role" />
+        <AssociationConnector Association="asdModel.FK_User_Role" />
+        <AssociationConnector Association="asdModel.FK_Order_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

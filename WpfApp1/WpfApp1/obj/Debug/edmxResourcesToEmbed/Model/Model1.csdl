@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="asdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SHAITANET" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="asdModel.Administrator" />
+    <EntitySet Name="Feed" EntityType="asdModel.Feed" />
+    <EntitySet Name="Role" EntityType="asdModel.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="asdModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="asdModel.User" />
+    <EntitySet Name="Order" EntityType="asdModel.Order" />
+    <AssociationSet Name="FK_Administrator_Feed" Association="asdModel.FK_Administrator_Feed">
+      <End Role="Feed" EntitySet="Feed" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Administrator_Role" Association="asdModel.FK_Administrator_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Feed" Association="asdModel.FK_Order_Feed">
+      <End Role="Feed" EntitySet="Feed" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Feed" Association="asdModel.FK_User_Feed">
+      <End Role="Feed" EntitySet="Feed" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Feed1" Association="asdModel.FK_User_Feed1">
+      <End Role="Feed" EntitySet="Feed" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Role" Association="asdModel.FK_Order_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="asdModel.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="asdModel.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FeedID" Type="Int32" />
+    <Property Name="Role_Id" Type="Int32" />
+    <NavigationProperty Name="Feed" Relationship="asdModel.FK_Administrator_Feed" FromRole="Administrator" ToRole="Feed" />
+    <NavigationProperty Name="Role" Relationship="asdModel.FK_Administrator_Role" FromRole="Administrator" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Feed">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Administrator" Relationship="asdModel.FK_Administrator_Feed" FromRole="Feed" ToRole="Administrator" />
+    <NavigationProperty Name="Order" Relationship="asdModel.FK_Order_Feed" FromRole="Feed" ToRole="Order" />
+    <NavigationProperty Name="User" Relationship="asdModel.FK_User_Feed" FromRole="Feed" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="asdModel.FK_User_Feed1" FromRole="Feed" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Administrator" Relationship="asdModel.FK_Administrator_Role" FromRole="Role" ToRole="Administrator" />
+    <NavigationProperty Name="Order" Relationship="asdModel.FK_Order_Role" FromRole="Role" ToRole="Order" />
+    <NavigationProperty Name="User" Relationship="asdModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FeedID" Type="Int32" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Balance" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Feed" Relationship="asdModel.FK_User_Feed" FromRole="User" ToRole="Feed" />
+    <NavigationProperty Name="Feed1" Relationship="asdModel.FK_User_Feed1" FromRole="User" ToRole="Feed" />
+    <NavigationProperty Name="Role" Relationship="asdModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Order" Relationship="asdModel.FK_Order_User" FromRole="User" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Feed_Id" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="Role_Id" Type="Int32" />
+    <NavigationProperty Name="Feed" Relationship="asdModel.FK_Order_Feed" FromRole="Order" ToRole="Feed" />
+    <NavigationProperty Name="Role" Relationship="asdModel.FK_Order_Role" FromRole="Order" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="asdModel.FK_Order_User" FromRole="Order" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Administrator_Feed">
+    <End Type="asdModel.Feed" Role="Feed" Multiplicity="0..1" />
+    <End Type="asdModel.Administrator" Role="Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feed">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="FeedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Administrator_Role">
+    <End Type="asdModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="asdModel.Administrator" Role="Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Feed">
+    <End Type="asdModel.Feed" Role="Feed" Multiplicity="1" />
+    <End Type="asdModel.Order" Role="Order" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Feed">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Feed">
+    <End Type="asdModel.Feed" Role="Feed" Multiplicity="0..1" />
+    <End Type="asdModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feed">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="FeedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Feed1">
+    <End Type="asdModel.Feed" Role="Feed" Multiplicity="0..1" />
+    <End Type="asdModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feed">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="FeedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Role">
+    <End Type="asdModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="asdModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="asdModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="asdModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Type="asdModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="asdModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
